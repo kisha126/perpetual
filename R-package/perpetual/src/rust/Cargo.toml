@@ -3,4 +3,11 @@ name = "rust"
 version = "0.1.0"
 edition = "2024"
 
+[lib]
+name = "perpetual"
+crate-type = ["staticlib"]
+
 [dependencies]
+extendr-api = "0.4"
+serde_plain = "1.0"
+perpetual_rs = { package = "perpetual", version = "0.8.0", path = "../../../../" }

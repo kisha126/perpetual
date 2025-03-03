@@ -1,14 +1,30 @@
-pub fn add(left: u64, right: u64) -> u64 {
-    left + right
+use extendr_api::prelude::*;
+
+mod booster;
+mod multi_output;
+mod utils;
+
+use booster::PerpetualBooster;
+use multi_output::MultiOutputBooster;
+
+// Macro to generate exports
+#[extendr]
+fn print_matrix(x: &[f32], rows: usize, cols: usize) -> Result<()> {
+    let m = perpetual_rs::data::Matrix::new(x, rows, cols);
+    rprintln!("{}", m);
+    Ok(())
 }
 
-#[cfg(test)]
-mod tests {
-    use super::*;
+#[extendr]
+fn percentiles(v: &[f64], sample_weight: &[f64], percentiles: &[f64]) -> Vec<f64> {
+    perpetual_rs::utils::percentiles(v, sample_weight, percentiles)
+}
 
-    #[test]
-    fn it_works() {
-        let result = add(2, 2);
-        assert_eq!(result, 4);
-    }
+// Macro to generate exports
+extendr_module! {
+    mod perpetual;
+    fn print_matrix;
+    fn percentiles;
+    impl PerpetualBooster;
+    impl MultiOutputBooster;
 }
