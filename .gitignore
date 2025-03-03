@@ -10,3 +10,11 @@ python-package/LICENSE
 python-package/README.md
 python-package/target
 python-package/python/perpetual/__pycache__
+
+# Rstudio Project
+.Rhistory
+perpetual.Rproj
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
